@@ -55,7 +55,6 @@
    .job-card.status-rejected::before  { background: #ef4444; }
    
 
-   /* ---- Tab active override to use dark bg ---- */
    .tabs-boxed .tab-active {
      background-color: #1f2937 !important;
      color: #ffffff !important;
