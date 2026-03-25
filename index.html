@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HireTrack — Job Application Tracker</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind + DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Tailwind font config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-body bg-base-200 min-h-screen">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <div class="navbar bg-neutral text-neutral-content sticky top-0 z-50 shadow-md border-b border-white/5">
+    <div class="navbar-start">
+      <a href="#" class="flex items-center gap-2 ml-2 md:ml-4">
+        <div class="btn btn-primary btn-sm w-9 h-9 p-0 rounded-lg pointer-events-none">
+          <i class="fa-solid fa-rocket text-sm"></i>
+        </div>
+        <span class="font-display font-semibold text-lg tracking-tight">
+          Hire<strong class="text-primary">Track</strong>
+        </span>
+      </a>
+    </div>
+
+    <!-- Desktop nav links -->
+    <div class="navbar-end hidden md:flex gap-6 mr-6">
+      <a href="#dashboard" class="text-sm text-white/50 hover:text-white transition-colors font-medium">Dashboard</a>
+      <a href="#jobs"      class="text-sm text-white/50 hover:text-white transition-colors font-medium">Jobs</a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <div class="navbar-end md:hidden mr-2">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-sm text-white/60">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </label>
+        <ul tabindex="0" class="dropdown-content menu menu-sm bg-neutral rounded-box z-50 mt-2 w-40 shadow-lg border border-white/10">
+          <li><a href="#dashboard" class="text-white/70">Dashboard</a></li>
+          <li><a href="#jobs"      class="text-white/70">Jobs</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <section id="dashboard" class="bg-neutral relative overflow-hidden py-14 px-4 md:px-8">
+    <!-- Decorative glow blob -->
+    <div class="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/20 blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+
+      <!-- Title -->
+      <div class="mb-10">
+        <h1 class="font-display font-extrabold text-white leading-tight tracking-tight
+                   text-4xl sm:text-5xl lg:text-6xl">
+          Job Application <span class="text-primary">Tracker</span>
+        </h1>
+        <p class="text-white/40 mt-2 font-light text-base">
+          Manage your job hunt — one click at a time.
+        </p>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+        <!-- Total -->
+        <div class="card bg-white/5 border border-white/10 backdrop-blur-sm
+                    hover:-translate-y-1 transition-transform duration-200 cursor-default">
+          <div class="card-body p-6 relative overflow-hidden">
+            <p class="text-xs font-semibold uppercase tracking-widest text-white/40">Total Jobs</p>
+            <span class="font-display font-extrabold text-5xl text-white mt-1 stat-num"
+                  id="count-total">8</span>
+            <i class="fa-solid fa-briefcase absolute right-5 bottom-5 text-4xl text-white/8"></i>
+          </div>
+        </div>
+
+        <!-- Interview -->
+        <div class="card bg-white/5 border border-white/10 backdrop-blur-sm
+                    hover:-translate-y-1 transition-transform duration-200 cursor-default">
+          <div class="card-body p-6 relative overflow-hidden">
+            <p class="text-xs font-semibold uppercase tracking-widest text-white/40">Interview</p>
+            <span class="font-display font-extrabold text-5xl text-success mt-1 stat-num"
+                  id="count-interview">0</span>
+            <i class="fa-solid fa-comments absolute right-5 bottom-5 text-4xl text-white/8"></i>
+          </div>
+        </div>
+
+        <!-- Rejected -->
+        <div class="card bg-white/5 border border-white/10 backdrop-blur-sm
+                    hover:-translate-y-1 transition-transform duration-200 cursor-default">
+          <div class="card-body p-6 relative overflow-hidden">
+            <p class="text-xs font-semibold uppercase tracking-widest text-white/40">Rejected</p>
+            <span class="font-display font-extrabold text-5xl text-error mt-1 stat-num"
+                  id="count-rejected">0</span>
+            <i class="fa-solid fa-circle-xmark absolute right-5 bottom-5 text-4xl text-white/8"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== JOBS SECTION ===================== -->
+  <section id="jobs" class="py-12 px-4 md:px-8 pb-20">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        <h2 class="font-display font-extrabold text-2xl md:text-3xl tracking-tight text-base-content">
+          Available Jobs
+        </h2>
+        <div class="badge badge-ghost font-semibold text-sm px-4 py-3"
+             id="jobs-count-display">8 jobs</div>
+      </div>
+
+      <!-- DaisyUI Tabs (boxed) -->
+      <div class="tabs tabs-boxed bg-base-100 w-fit mb-8 shadow-sm border border-base-300 p-1">
+        <button class="tab tab-active font-semibold" data-tab="all">All</button>
+        <button class="tab font-medium" data-tab="interview">Interview</button>
+        <button class="tab font-medium" data-tab="rejected">Rejected</button>
+      </div>
+
+      <!-- Job Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+           id="cards-container"></div>
+
+      <!-- Empty State -->
+      <div class="hidden" id="empty-state">
+        <div class="card bg-base-100 border border-dashed border-base-300">
+          <div class="card-body items-center text-center py-24">
+            <i class="fa-regular fa-folder-open text-7xl text-primary/25 mb-5"></i>
+            <h3 class="font-display font-bold text-xl text-base-content">No jobs available</h3>
+            <p class="text-base-content/45 text-sm mt-1">
+              Check back soon for new job opportunities
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer footer-center bg-neutral border-t border-white/5 py-6 text-xs text-white/25">
+    <p>Araf Mihad  &nbsp;·&nbsp; HireTrack © 2026</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
